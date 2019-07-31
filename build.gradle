@@ -1,0 +1,35 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.6.RELEASE'
+	id 'java'
+}
+
+apply plugin : 'java'
+apply plugin : 'io.spring.dependency-management'
+apply plugin : 'org.springframework.boot'
+
+ext {
+	lombokVersion = "1.18.8"
+	guavaVersion = "28.0-jre"
+}
+
+repositories {
+	mavenCentral()
+}
+
+group = 'com.google.knight76'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation('org.springframework.boot:spring-boot-starter-web') {
+		exclude module: "spring-boot-starter-tomcat"
+	}
+	implementation "org.projectlombok:lombok:${lombokVersion}"
+	implementation 'org.springframework.boot:spring-boot-starter-undertow'
+	implementation 'org.springframework.kafka:spring-kafka'
+	implementation "com.google.guava:guava:${guavaVersion}"
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation('org.springframework.restdocs:spring-restdocs-mockmvc')
+}
